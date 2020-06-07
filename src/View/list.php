@@ -16,8 +16,8 @@
             <td><?php echo $product['Price'] ?></td>
             <td><?php echo $product['Description'] ?></td>
             <td><?php echo $product['Vendor'] ?></td>
-            <td><a href="index.php?page=delete&id=<?php echo $product['Id']?>">delete</a></td>
-            <td><a href="index.php?page=update&id=<?php echo $product['Id']?>">update</a></td>
+            <td><a href="index.php?page=delete&id=<?php echo $product['Id'] ?>">delete</a></td>
+            <td><a href="index.php?page=update&id=<?php echo $product['Id'] ?>">update</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

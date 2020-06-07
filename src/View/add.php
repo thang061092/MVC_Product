@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,7 +27,9 @@
             <td><input type="text" name="vendor" required placeholder="nhap ten nha san xuat"></td>
         </tr>
         <tr>
-            <td><button type="submit" >Them moi</button></td>
+            <td>
+                <button type="submit">Them moi</button>
+            </td>
         </tr>
     </table>
 
