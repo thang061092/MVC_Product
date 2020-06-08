@@ -14,26 +14,26 @@
 </style>
 <body>
 <form method="post">
-    <table class="table">
+    <table class="table table-hover col-12 col-md-6">
         <tr>
-            <td >Ten San pham</td>
-            <td><input type="text" name="name" required placeholder="nhap ten san pham" ></td>
+            <th>Ten San pham</th>
+            <td><input type="text" name="name" required placeholder="nhap ten san pham" class="col-12"></td>
         </tr>
         <tr>
-            <td>Gia san pham</td>
-            <td><input type="text" name="price" required placeholder="nhap gia san pham"></td>
+            <th>Gia san pham</th>
+            <td><input type="text" name="price" required placeholder="nhap gia san pham" class="col-12"></td>
         </tr>
         <tr>
-            <td>Mo ta san pham</td>
-            <td><input type="text" name="desc" required placeholder="nhap mo ta"></td>
+            <th>Mo ta san pham</th>
+            <td><input type="text" name="desc" required placeholder="nhap mo ta" class="col-12"></td>
         </tr>
         <tr>
-            <td>Nha san xuat</td>
-            <td><input type="text" name="vendor" required placeholder="nhap ten nha san xuat"></td>
+            <th>Nha san xuat</th>
+            <td><input type="text" name="vendor" required placeholder="nhap ten nha san xuat" class="col-12"></td>
         </tr>
         <tr>
-            <td>
-                <button type="submit">Them moi</button>
+            <td colspan="2">
+                <button type="submit" class="btn btn-primary">Them moi</button>
             </td>
         </tr>
     </table>

@@ -21,15 +21,6 @@ class ProductController
 
     public function delete($id)
     {
-//        if ($_SERVER["REQUEST_METHOD"] == "GET") {
-//            $id = $_GET['id'];
-//            $product = $this->connectProduct->get($id);
-//            include "src/View/delete.php";
-//        } else {
-//            $id = $_POST['id'];
-//            $this->connectProduct->delete($id);
-//            header("Location:index.php?page=list");
-//        }
         $this->connectProduct->delete($id);
         header("Location:index.php?page=list");
     }
