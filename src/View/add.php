@@ -6,13 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+
 </head>
+<style>
+
+</style>
 <body>
 <form method="post">
-    <table>
+    <table class="table">
         <tr>
-            <td>Ten San pham</td>
-            <td><input type="text" name="name" required placeholder="nhap ten san pham"></td>
+            <td >Ten San pham</td>
+            <td><input type="text" name="name" required placeholder="nhap ten san pham" ></td>
         </tr>
         <tr>
             <td>Gia san pham</td>

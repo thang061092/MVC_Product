@@ -37,6 +37,9 @@
             <td><?php echo $product['Vendor'] ?></td>
         </tr>
     <?php endforeach; ?>
+    <tr>
+        <th colspan="7"><?php if(empty($products)) echo "No Data"?></th>
+    </tr>
 </table>
 </body>
 </html>

@@ -20,7 +20,7 @@ $controller = new ProductController();
 <br>
 <a href="index.php?page=add">them san pham</a>
 <form action="index.php?page=search" method="post">
-    <input type="text" name="search" required>
+    <input id="search" type="text" name="search" required>
     <button type="submit">Search</button>
 
 </form>
@@ -30,7 +30,8 @@ switch ($page) {
         $controller->view();
         break;
     case 'delete':
-        $controller->delete();
+        $id=$_REQUEST["id"];
+        $controller->delete($id);
         break;
     case 'add':
         $controller->add();
