@@ -26,9 +26,9 @@ class ProductController
             $product = $this->connectProduct->get($id);
             include "src/View/delete.php";
         } else {
-            $id = $_POST['Id'];
+            $id = $_POST['id'];
             $this->connectProduct->delete($id);
-            header('Location: index.php');
+            header("Location:index.php?page=list");
         }
     }
 
@@ -42,7 +42,8 @@ class ProductController
             $desc = $_REQUEST['desc'];
             $vendor = $_REQUEST["vendor"];
             $this->connectProduct->add($name, $price, $desc, $vendor);
-            include "src/View/add.php";
+            header("Location:index.php?page=list");
+
         }
     }
 
@@ -59,7 +60,7 @@ class ProductController
             $desc = $_REQUEST['desc'];
             $vendor = $_REQUEST["vendor"];
             $this->connectProduct->update($id, $name, $price, $desc, $vendor);
-            header('Location: index.php');
+            header("Location:index.php?page=list");
         }
     }
 
