@@ -1,33 +1,61 @@
-<html>
-<head>
+<div class="row pt-4">
+    <div class="col-12 col-md-12 pb-2">
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <a class="btn btn-primary" href="index.php?page=add-product">Add new</a>
+            </div>
+            <div class="col-12 col-md-4">
+                <form class="form-inline my-2 my-lg-0" action="index.php?page=search-product" method="post">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                           name="search" required>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span
+                                class="glyphicon glyphicon-search"></span>Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 ">
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark table-bordered">
+            <tr>
+                <th>STT</th>
+                <th>ProductName</th>
+                <th>ProductLine</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>DateCreat</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <?php if (empty($products)): ?>
+                <tr>
+                    <th colspan="10">
+                        No Data
+                    </th>
+                </tr>
+            <?php else: ?>
+                <?php foreach ($products as $key => $product): ?>
+                    <tr>
+                        <td><?php echo ++$key ?></td>
+                        <td><?php echo $product->getProductName() ?></td>
+                        <td><?php echo $product->getProductLine() ?></td>
+                        <td><?php echo $product->getPrice() ?></td>
+                        <td><?php echo $product->getQuantity() ?></td>
+                        <td><?php echo $product->getDateCreat() ?></td>
+                        <td><?php echo $product->getDescription()?></td>
+                        <td>
+                            <a class="btn btn-primary" href="index.php?page=update-product&id=<?php echo $product->getId() ?>">Update</a>
+                            <a class="btn btn-danger" onclick="return confirm('ban chac chan muon xoa?')" href="index.php?page=delete-product&id=<?php echo $product->getId() ?>">Delete</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
 
-</head>
-<body>
+            <?php endif; ?>
 
-<table class="table table-hover">
-    <thead class="thead-dark">
-    <tr>
-        <th>STT</th>
-        <th>ProductName</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th colspan="3">Vendor</th>
-    </tr>
-    </thead>
-    <?php foreach ($products as $key => $product): ?>
-        <tr>
-            <td><?php echo ++$key ?></td>
-            <td><?php echo $product['ProductName'] ?></td>
-            <td><?php echo $product['Price'] ?></td>
-            <td><?php echo $product['Description'] ?></td>
-            <td><?php echo $product['Vendor'] ?></td>
-            <td><a href="index.php?page=delete&id=<?php echo $product['Id'] ?>" class="btn btn-primary">delete</a></td>
-            <td><a href="index.php?page=update&id=<?php echo $product['Id'] ?>" class="btn btn-primary">update</a></td>
-        </tr>
-    <?php endforeach; ?>
-    <tr>
-        <th colspan="7"><?php if(empty($products)) echo "No Data"?></th>
-    </tr>
-</table>
-</body>
-</html>
+        </table>
+    </div>
+</div>
+
+

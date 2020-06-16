@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\Product;
 use App\Model\ProductDB;
 
 class ProductController
@@ -13,51 +14,58 @@ class ProductController
         $this->connectProduct = new ProductDB();
     }
 
-    public function view()
+    public function viewProduct()
     {
         $products = $this->connectProduct->getAll();
         include "src/View/list.php";
     }
 
-    public function delete($id)
+    public function deleteProduct($id)
     {
         $this->connectProduct->delete($id);
-        header("Location:index.php?page=list");
+        header("Location:index.php?page=list-product");
     }
 
-    public function add()
+    public function addProduct()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             include "src/View/add.php";
         } else {
+            $id = $_REQUEST['id'];
             $name = $_REQUEST['name'];
-            $price = $_REQUEST['price'];
-            $desc = $_REQUEST['desc'];
-            $vendor = $_REQUEST["vendor"];
-            $this->connectProduct->add($name, $price, $desc, $vendor);
-            header("Location:index.php?page=list");
+            $line = $_REQUEST['line'];
+            $price = $_REQUEST["price"];
+            $quantity = $_REQUEST["quantity"];
+            $date = $_REQUEST["date"];
+            $desc = $_REQUEST["desc"];
+            $product= new Product($id,$name,$line,$price,$quantity,$date,$desc);
+            $this->connectProduct->add($product);
+            header("Location:index.php?page=list-product");
 
         }
     }
 
-    public function update()
+    public function updateProduct()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $id = $_GET['id'];
             $product = $this->connectProduct->get($id);
             include "src/View/update.php";
         } else {
-            $id = $_POST['id'];
+            $id = $_REQUEST['id'];
             $name = $_REQUEST['name'];
-            $price = $_REQUEST['price'];
-            $desc = $_REQUEST['desc'];
-            $vendor = $_REQUEST["vendor"];
-            $this->connectProduct->update($id, $name, $price, $desc, $vendor);
-            header("Location:index.php?page=list");
+            $line = $_REQUEST['line'];
+            $price = $_REQUEST["price"];
+            $quantity = $_REQUEST["quantity"];
+            $date = $_REQUEST["date"];
+            $desc = $_REQUEST["desc"];
+            $product= new Product($id,$name,$line,$price,$quantity,$date,$desc);
+            $this->connectProduct->update($product);
+            header("Location:index.php?page=list-product");
         }
     }
 
-    public function search()
+    public function searchProduct()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             include "src/View/search.php";

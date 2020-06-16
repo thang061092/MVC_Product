@@ -1,46 +1,36 @@
-
-<html>
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    th, td {
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even){background-color: #f2f2f2}
-
-    th {
-        background-color: #4CAF50;
-        color: white;
-    }
-</style>
-<body>
-
-<table border="1">
-    <tr>
-        <th>STT</th>
-        <th>ProductName</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Vendor</th>
-    </tr>
-    <?php foreach ($products as $key => $product): ?>
+<div class="col-12 col-md-12 ">
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark table-bordered">
         <tr>
-            <td><?php echo ++$key ?></td>
-            <td><?php echo $product['ProductName'] ?></td>
-            <td><?php echo $product['Price'] ?></td>
-            <td><?php echo $product['Description'] ?></td>
-            <td><?php echo $product['Vendor'] ?></td>
+            <th>STT</th>
+            <th>ProductName</th>
+            <th>ProductLine</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>DateCreat</th>
+            <th>Description</th>
         </tr>
-    <?php endforeach; ?>
-    <tr>
-        <th colspan="7"><?php if(empty($products)) echo "No Data"?></th>
-    </tr>
-</table>
-</body>
-</html>
+        </thead>
+        <?php if (empty($products)): ?>
+            <tr>
+                <th colspan="10">
+                    No Data
+                </th>
+            </tr>
+        <?php else: ?>
+            <?php foreach ($products as $key => $product): ?>
+                <tr>
+                    <td><?php echo ++$key ?></td>
+                    <td><?php echo $product->getProductName() ?></td>
+                    <td><?php echo $product->getProductLine() ?></td>
+                    <td><?php echo $product->getPrice() ?></td>
+                    <td><?php echo $product->getQuantity() ?></td>
+                    <td><?php echo $product->getDateCreat() ?></td>
+                    <td><?php echo $product->getDescription()?></td>
+                </tr>
+            <?php endforeach; ?>
 
+        <?php endif; ?>
+
+    </table>
+</div>

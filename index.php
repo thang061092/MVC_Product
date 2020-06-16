@@ -16,31 +16,38 @@ $controller = new ProductController();
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php include "src/View/header/boostrap.php" ?>
+<div class="container">
+    <?php include "src/View/header/boostrap.php" ?>
 
-</form>
-<?php
-switch ($page) {
-    case 'list':
-        $controller->view();
-        break;
-    case 'delete':
-        $id = $_REQUEST["id"];
-        $controller->delete($id);
-        break;
-    case 'add':
-        $controller->add();
-        break;
-    case 'update':
-        $controller->update();
-        break;
-    case 'search':
-        $controller->search();
-        break;
-}
-?>
+    <?php
+    switch ($page) {
+        case 'list-product':
+            $controller->viewProduct();
+            break;
+        case 'add-product':
+            $controller->addProduct();
+            break;
+        case 'delete-product':
+            $id= $_REQUEST['id'];
+            $controller->deleteProduct($id);
+            break;
+        case 'update-product':
+            $controller->updateProduct();
+            break;
+        case 'search-product':
+            $controller->searchProduct();
+            break;
+        default:
+            $controller->viewProduct();
+    }
+    ?>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

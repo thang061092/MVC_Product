@@ -1,43 +1,34 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+<h3>Thêm sản phẩm</h3>
+<div class="col-12 col-md-12">
+    <div>
+        <form method="post" class="">
+            <div>
+                <label for="exampleFormControlTextarea1">Id:</label>
+                <input class="form-control" name="id" type="text" required placeholder="Nhập mã sản phẩm">
+                <label for="exampleFormControlTextarea1">ProductName:</label>
+                <input class="form-control" name="name" type="text" required placeholder="Nhập tên sản phẩm">
+                <label for="exampleFormControlTextarea1">ProductLine:</label>
+                <div >
+                    <select name="line" class="custom-select custom-select-lg mb-3">
+                        <option>Điện thoại</option>
+                        <option>Điều hoà</option>
+                        <option>Tủ Lạnh</option>
+                    </select>
+                </div>
+                <label for="exampleFormControlTextarea1">Price:</label>
+                <input class="form-control" name="price" type="text" required placeholder="Nhập giá sản phẩm">
+                <label for="exampleFormControlTextarea1">Quantity:</label>
+                <input class="form-control" name="quantity" type="number" required placeholder="Nhập số lượng tồn">
+                <label for="exampleFormControlTextarea1">DateCreat:</label>
+                <input class="form-control" name="date" type="text" required placeholder="yyyy-mm-dd">
+                <label for="exampleFormControlTextarea1">Description:</label>
+                <input class="form-control" name="desc" type="text" required placeholder="mô tả sản phẩm">
+            </div>
+            <div class="bt-4">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Cancel</button>
+            </div>
+        </form>
+    </div>
 
-
-</head>
-<style>
-
-</style>
-<body>
-<form method="post">
-    <table class="table table-hover col-12 col-md-6">
-        <tr>
-            <th>Ten San pham</th>
-            <td><input type="text" name="name" required placeholder="nhap ten san pham" class="col-12"></td>
-        </tr>
-        <tr>
-            <th>Gia san pham</th>
-            <td><input type="text" name="price" required placeholder="nhap gia san pham" class="col-12"></td>
-        </tr>
-        <tr>
-            <th>Mo ta san pham</th>
-            <td><input type="text" name="desc" required placeholder="nhap mo ta" class="col-12"></td>
-        </tr>
-        <tr>
-            <th>Nha san xuat</th>
-            <td><input type="text" name="vendor" required placeholder="nhap ten nha san xuat" class="col-12"></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <button type="submit" class="btn btn-primary">Them moi</button>
-            </td>
-        </tr>
-    </table>
-
-</form>
-</body>
-</html>
+</div>

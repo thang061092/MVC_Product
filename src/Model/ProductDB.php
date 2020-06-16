@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+
 class ProductDB
 {
     protected $database;
@@ -13,60 +14,78 @@ class ProductDB
 
     public function getAll()
     {
-        $sql = "SELECT * FROM Products";
+        $sql = "SELECT * FROM products";
         $stmt = $this->database->query($sql);
-        return $stmt->fetchAll();
+        $result = $stmt->fetchAll();
+        $arr = [];
+        foreach ($result as $item) {
+            $product = new Product($item["id"], $item["productName"], $item["productLine"], $item["price"], $item["quantity"], $item["dateCreat"], $item["description"]);
+            array_push($arr, $product);
+        }
+        return $arr;
     }
 
     public function get($id)
     {
-        $sql = "SELECT * FROM Products WHERE Id= :id";
+        $sql = "SELECT * FROM products WHERE id= :id";
         $stmt = $this->database->prepare($sql);
         $stmt->bindParam(":id", $id);
         $stmt->execute();
-        return $stmt->fetch();
-
+        $item = $stmt->fetch();
+        $product = new Product($item["id"], $item["productName"], $item["productLine"], $item["price"], $item["quantity"], $item["dateCreat"], $item["description"]);
+        return $product;
     }
 
 
     public function delete($id)
     {
-        $sql = "DELETE FROM Products WHERE Id = :id";
+        $sql = "DELETE FROM products WHERE id = :id";
         $stmt = $this->database->prepare($sql);
         $stmt->bindParam(":id", $id);
         $stmt->execute();
     }
 
-    public function add($ProductName, $Price, $Description, $Vendor)
+    public function add($product)
     {
-        $sql = "INSERT INTO `Products`( `ProductName`, `Price`, `Description`, `Vendor`) VALUES (:ProductName, :Price, :Description, :Vendor)";
+        $sql = "INSERT INTO `products`(`id`, `productName`, `productLine`, `price`, `quantity`, `dateCreat`, `description`) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->database->prepare($sql);
-        $stmt->bindParam(":ProductName", $ProductName);
-        $stmt->bindParam(":Price", $Price);
-        $stmt->bindParam(":Description", $Description);
-        $stmt->bindParam(":Vendor", $Vendor);
+        $stmt->bindParam(1, $product->getId());
+        $stmt->bindParam(2, $product->getProductName());
+        $stmt->bindParam(3, $product->getProductLine());
+        $stmt->bindParam(4, $product->getPrice());
+        $stmt->bindParam(5, $product->getQuantity());
+        $stmt->bindParam(6, $product->getDateCreat());
+        $stmt->bindParam(7, $product->getDescription());
         $stmt->execute();
     }
 
-    public function update($id, $ProductName, $Price, $Description, $Vendor)
+    public function update($product)
     {
-        $sql = "UPDATE `Products` SET `ProductName`= :ProductName,`Price`= :Price,`Description`= :Description,`Vendor`= :Vendor WHERE Id = :id";
+        $sql = "UPDATE `products` SET `productName`= :productName, `productLine`=:productLine, `price`= :price,`quantity`= :quantity, `dateCreat`= :dateCreat,`description`= :description WHERE id= :id";
         $stmt = $this->database->prepare($sql);
-        $stmt->bindParam(":ProductName", $ProductName);
-        $stmt->bindParam(":Price", $Price);
-        $stmt->bindParam(":Description", $Description);
-        $stmt->bindParam(":Vendor", $Vendor);
-        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":id", $product->getId());
+        $stmt->bindParam(":productName", $product->getProductName());
+        $stmt->bindParam(":productLine", $product->getProductLine());
+        $stmt->bindParam(":price", $product->getPrice());
+        $stmt->bindParam(":quantity", $product->getQuantity());
+        $stmt->bindParam(":dateCreat", $product->getDateCreat());
+        $stmt->bindParam(":description", $product->getDescription());
         $stmt->execute();
     }
 
     public function search($key)
     {
-        $sql = "SELECT * FROM Products WHERE ProductName LIKE :keyword";
+        $sql = "SELECT * FROM products WHERE productName LIKE :keyword";
         $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":keyword", '%' . $key . '%');
         $stmt->execute();
-        return ($stmt->fetchAll());
+        $result = $stmt->fetchAll();
+        $arr = [];
+        foreach ($result as $item) {
+            $product = new Product($item["id"], $item["productName"], $item["productLine"], $item["price"], $item["quantity"], $item["dateCreat"], $item["description"]);
+            array_push($arr, $product);
+        }
+        return $arr;
     }
 
 
